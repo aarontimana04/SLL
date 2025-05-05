@@ -1,0 +1,102 @@
+// 1
+struct Producto {
+    string nombre;
+    int cantidad;
+    float precioUnitario;
+
+    Producto(string n = "", int c = 0, float p = 0.0) {
+        nombre = n;
+        cantidad = c;
+        precioUnitario = p;
+    }
+
+    float costoTotal() const {
+        return cantidad * precioUnitario;
+    }
+
+    void mostrar() const {
+        cout << "Producto: " << nombre
+             << ", Cantidad: " << cantidad
+             << ", Precio unitario: S/." << precioUnitario
+             << ", Subtotal: S/." << costoTotal() << endl;
+    }
+};
+
+// main
+    LLista<Producto> listaProductos;
+
+    // Agregamos algunos productos al minimarket
+    listaProductos.agregar(Producto("Arroz", 2, 3.50));     // 2kg x S/.3.50
+    listaProductos.agregar(Producto("Leche", 4, 2.80));     // 4L x S/.2.80
+    listaProductos.agregar(Producto("Huevos", 12, 0.60));   // 12u x S/.0.60
+    listaProductos.agregar(Producto("Aceite", 1, 10.00));   // 1L x S/.10.00
+
+    // Recorremos la lista para mostrar los productos y calcular el costo total
+    float total = 0.0;
+    listaProductos.moverAInicio();
+    for (int i = 0; i < listaProductos.longitud(); i++) {
+        listaProductos.moverAPosicion(i);
+        Producto p = listaProductos.valor(); // obtenemos producto
+        p.mostrar();
+        total += p.costoTotal();
+    }
+
+    cout << "----------------------------------\n";
+    cout << "Costo total de compra: S/." << total << endl;
+
+    return 0;
+
+
+// 2
+struct Estudiante {
+    string nombre;
+    float notas[5];  // Máximo 5 notas
+    int cantidadNotas;
+
+    Estudiante(string n = "", float* nArray = nullptr, int cant = 0) {
+        nombre = n;
+        cantidadNotas = cant;
+        for (int i = 0; i < cant; i++) {
+            notas[i] = nArray[i];
+        }
+    }
+
+    float promedio() const {
+        if (cantidadNotas == 0) return 0;
+        float suma = 0;
+        for (int i = 0; i < cantidadNotas; i++)
+            suma += notas[i];
+        return suma / cantidadNotas;
+    }
+
+    void mostrar() const {
+        cout << "Nombre: " << nombre << ", Notas: ";
+        for (int i = 0; i < cantidadNotas; i++)
+            cout << notas[i] << " ";
+        cout << "=> Promedio: " << promedio() << endl;
+    }
+};
+// main
+    ALista<Estudiante> listaEstudiantes;
+
+    // Datos de prueba
+    float notasAna[] = {18.5, 17.0, 19.0, 18.0};
+    float notasLuis[] = {13.5, 14.0, 12.5, 15.0};
+    float notasMaria[] = {20.0, 19.5, 18.0, 19.0};
+
+    listaEstudiantes.agregar(Estudiante("Ana", notasAna, 4));
+    listaEstudiantes.agregar(Estudiante("Luis", notasLuis, 4));
+    listaEstudiantes.agregar(Estudiante("María", notasMaria, 4));
+
+    // Mostrar promedios
+    cout << "Promedios de estudiantes:\n";
+    listaEstudiantes.moverAInicio();
+    for (int i = 0; i < listaEstudiantes.longitud(); i++) {
+        listaEstudiantes.moverAPosicion(i);
+        Estudiante e = listaEstudiantes.eliminar();
+        e.mostrar();
+        listaEstudiantes.insertar(e);  // Lo volvemos a insertar para mantener la lista
+        listaEstudiantes.siguiente(); // Avanzamos (porque insertar desplaza a la derecha)
+    }
+
+    return 0;

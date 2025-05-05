@@ -1,0 +1,208 @@
+Ejemplos de los métodos de LLista
+Constructor - LLista()
+Ejemplo:
+
+Al crear una lista nueva: LLista<int> lista;
+
+   [cabeza/actual/cola] → []  // Nodo centinela vacío
+   cantidad = 0
+agregar(elemento)
+Ejemplo:
+
+Lista inicial: vacía (solo nodo centinela)
+
+   [cabeza/actual] → []  // Nodo centinela
+          [cola] ↑
+   cantidad = 0
+
+Agregamos 1: lista.agregar(1);
+
+   [cabeza/actual] → [] → [1]
+                          ↑
+                        [cola]
+   cantidad = 1
+
+Agregamos 2: lista.agregar(2);
+
+   [cabeza/actual] → [] → [1] → [2]
+                                ↑
+                              [cola]
+   cantidad = 2
+
+Agregamos 3 y 4:
+
+   [cabeza/actual] → [] → [1] → [2] → [3] → [4]
+                                            ↑
+                                          [cola]
+   cantidad = 4
+
+Agregamos 5: lista.agregar(5);
+
+   [cabeza/actual] → [] → [1] → [2] → [3] → [4] → [5]
+                                                    ↑
+                                                  [cola]
+   cantidad = 5
+insertar(elemento)
+Ejemplo:
+
+Lista inicial: [1,2,3,4] (tras el nodo centinela)
+
+   [cabeza/actual] → [] → [1] → [2] → [3] → [4]
+                                            ↑
+                                          [cola]
+   cantidad = 4
+
+Movemos el puntero actual a la posición 2: lista.moverAPosicion(2);
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                          ↑              ↑
+                      [actual]         [cola]
+   cantidad = 4
+
+Insertamos 10: lista.insertar(10);
+
+   [cabeza] → [] → [1] → [2] → [10] → [3] → [4]
+                          ↑                   ↑
+                      [actual]              [cola]
+   cantidad = 5
+
+La lista ahora es: [1,2,10,3,4]
+
+eliminar()
+Ejemplo:
+
+Lista inicial: [1,2,10,3,4]
+
+   [cabeza] → [] → [1] → [2] → [10] → [3] → [4]
+                          ↑                   ↑
+                      [actual]              [cola]
+   cantidad = 5
+
+Eliminamos el elemento después del actual: int x = lista.eliminar(); (x = 10)
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                          ↑              ↑
+                      [actual]         [cola]
+   cantidad = 4
+
+La lista ahora es: [1,2,3,4]
+
+moverAInicio() y moverAlFinal()
+Ejemplo:
+
+Lista actual: [1,2,3,4] con actual en posición 2
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                          ↑              ↑
+                      [actual]         [cola]
+
+Ejecutamos lista.moverAInicio();
+
+   [cabeza/actual] → [] → [1] → [2] → [3] → [4]
+                                                ↑
+                                              [cola]
+
+Ejecutamos lista.moverAlFinal();
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                                        ↑
+                                [actual/cola]
+anterior() y siguiente()
+Ejemplo:
+
+Lista actual: [1,2,3,4] con actual en posición 2
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                          ↑              ↑
+                      [actual]         [cola]
+
+Ejecutamos lista.anterior();
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                    ↑                    ↑
+                [actual]               [cola]
+
+Ejecutamos lista.siguiente();
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                          ↑              ↑
+                      [actual]         [cola]
+
+Ejecutamos lista.siguiente(); nuevamente
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                                ↑        ↑
+                            [actual]   [cola]
+moverAPosicion(pos)
+Ejemplo:
+
+Lista actual: [1,2,3,4] con actual en posición 3
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                                ↑        ↑
+                            [actual]   [cola]
+
+Ejecutamos lista.moverAPosicion(1);
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                    ↑                    ↑
+                [actual]               [cola]
+valor()
+Ejemplo:
+
+Lista actual: [1,2,3,4] con actual en posición 1
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                    ↑                    ↑
+                [actual]               [cola]
+
+Ejecutamos int v = lista.valor(); (v = 2)
+
+Devuelve el elemento del nodo siguiente al actual (2)
+
+
+
+longitud() y posicionActual()
+Ejemplo:
+
+Lista actual: [1,2,3,4] con actual en posición 2
+
+   [cabeza] → [] → [1] → [2] → [3] → [4]
+                          ↑              ↑
+                      [actual]         [cola]
+
+int len = lista.longitud(); (len = 4)
+
+Devuelve la cantidad de elementos
+
+
+int pos = lista.posicionActual(); (pos = 2)
+
+Devuelve la posición actual (2)
+
+
+
+Observaciones importantes sobre la implementación
+
+Nodo centinela: La lista siempre tiene un nodo centinela vacío al principio, que no contiene datos útiles pero simplifica la implementación.
+Puntero actual: El método valor() devuelve el elemento del nodo siguiente al actual, no el elemento del nodo actual.
+Borrado: Al eliminar un elemento, se elimina el nodo siguiente al actual, no el nodo actual.
+Posiciones: Las posiciones empiezan en 0, donde 0 representa el nodo centinela. El primer elemento real está en la posición 1.
+
+¿Te gustaría ejemplos específicos de algún otro método o una explicación más detallada de alguno de estos ejemplos?ReintentarClaude aún no tiene la capacidad de ejecutar el código que genera.Apor qué es: actual = cola = cabeza = new Nodo<E>(E());
+E() dentro de los parentesis de new Nodo<E>EditarExcelente pregunta. La línea actual = cola = cabeza = new Nodo<E>(E()); es fundamental para la implementación de la lista y contiene un detalle sutil con E().
+Explicación de actual = cola = cabeza = new Nodo<E>(E());
+Vamos a desglosarlo paso a paso:
+1. La creación del nodo centinela: new Nodo<E>(E())
+
+new Nodo<E>() está creando una instancia de la clase Nodo para el tipo genérico E.
+El constructor de Nodo espera un parámetro de tipo E (el elemento a almacenar) y opcionalmente un puntero al siguiente nodo.
+Aquí es donde aparece E(), que es una llamada al constructor por defecto del tipo genérico E.
+
+2. ¿Qué hace exactamente E()?
+E() llama al constructor por defecto del tipo E, lo que crea un objeto "vacío" o con valores iniciales predeterminados según el tipo:
+
+Si E es int, entonces E() sería equivalente a int(), que devuelve 0.
+Si E es double, entonces E() sería equivalente a double(), que devuelve 0.0.
+Si E es string, entonces E() sería equivalente a string(), que devuelve una cadena vacía "".
+Si E es una clase definida por el usuario (como Producto), entonces E() llamaría al constructor por defecto de esa clase.
